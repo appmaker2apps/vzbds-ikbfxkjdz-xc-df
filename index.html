@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <titleDONT LIE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #location {
+            display: none;
+        }
+        #jump-scare {
+            display: none;
+            font-size: 50px;
+            color: red;
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <h1>Are you over 18?</h1>
+    <button onclick="checkAge('yes')">Yes</button>
+    <button onclick="checkAge('no')">No</button>
+
+    <div id="location">
+        <h2>Your current location:</h2>
+        <p id="location-info"></p>
+    </div>
+
+    <div id="jump-scare">
+        STOP LYING!!
+    </div>
+
+    <script>
+        function checkAge(answer) {
+            if (answer === 'yes') {
+                triggerJumpScare();
+                setTimeout(getLocationByIP, 3000);  // Wait 3 seconds before showing location
+            } else {
+                alert('You must be over 18 to access this page.');
+            }
+        }
+
+        function triggerJumpScare() {
+            document.getElementById("jump-scare").style.display = "block";
+            setTimeout(function() {
+                document.getElementById("jump-scare").style.display = "none";
+            }, 1500);  // Jump scare disappears after 1.5 seconds
+        }
+
+        function getLocationByIP() {
+            fetch('https://ipinfo.io/json?token=544bbf411d92f9') // Using your access token
+            .then(response => response.json())
+            .then(data => {
+                var city = data.city;
+                document.getElementById("location-info").innerHTML = "You are located in: " + city;
+                document.getElementById("location").style.display = "block";
+            })
+            .catch(error => {
+                document.getElementById("location-info").innerHTML = "Unable to get location data.";
+                document.getElementById("location").style.display = "block";
+            });
+        }
+    </script>
+</body>
+</html>
