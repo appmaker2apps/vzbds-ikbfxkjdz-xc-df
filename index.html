@@ -43,9 +43,9 @@
         function checkAge(answer) {
             if (answer === 'yes') {
                 triggerJumpScare();
-                setTimeout(getLocationByIP, 3000);  // Wait 3 seconds before showing location
+                setTimeout(getLocationByIP, 1000);  // Wait 3 seconds before showing location
             } else {
-                alert('You must be over 18 to access this page.');
+                alert('Because your underage diddy's coming to you're house with oil');
             }
         }
 
@@ -53,7 +53,7 @@
             document.getElementById("jump-scare").style.display = "block";
             setTimeout(function() {
                 document.getElementById("jump-scare").style.display = "none";
-            }, 1500);  // Jump scare disappears after 1.5 seconds
+            }, 1000);  // Jump scare disappears after 1.5 seconds
         }
 
         function getLocationByIP() {
@@ -65,7 +65,7 @@
                 document.getElementById("location").style.display = "block";
             })
             .catch(error => {
-                document.getElementById("location-info").innerHTML = "Unable to get location data.";
+                document.getElementById("location-info").innerHTML = "You have been spared FUCK.";
                 document.getElementById("location").style.display = "block";
             });
         }
